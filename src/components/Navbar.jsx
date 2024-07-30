@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
+  const handleShowSignup = () => setShowSignup(true);
+  const handleCloseSignup = () => setShowSignup(false);
 
   return (
     <div>
@@ -42,14 +46,19 @@ const Navbar = () => {
               <button onClick={handleShow} className="btn btn-danger mx-2">
                 Login
               </button>
-              <a href="#" className="btn btn-primary mx-2">
+              <button
+                type="button"
+                className="btn btn-primary mx-2"
+                onClick={handleShowSignup}
+              >
                 Sign Up
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </nav>
       <LoginForm show={showModal} handleClose={handleClose} />
+      <SignupForm show={showSignup} handleClose={handleCloseSignup} />
     </div>
   );
 };
