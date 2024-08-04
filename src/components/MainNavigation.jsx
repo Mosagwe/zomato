@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const MainNavigation = () => {
   const [showModal, setShowModal] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -15,9 +16,9 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <NavLink className="navbar-brand" to="/">
             Food Discovery
-          </a>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -32,14 +33,24 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <NavLink
+                  className={(isActive) => {
+                    return isActive ? "nav-link active" : "nav-link";
+                  }}
+                  to="/"
+                >
                   Home
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink
+                  to="/meals"
+                  className={(isActive) => {
+                    return isActive ? "nav-link active" : "nav-link";
+                  }}
+                >
                   Meals
-                </a>
+                </NavLink>
               </li>
             </ul>
             <div className="d-flex ms-auto">
@@ -63,4 +74,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default MainNavigation;

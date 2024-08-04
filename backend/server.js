@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 
 const connectDB = require("./config/db");
-const path = require('path');
+const path = require("path");
 
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -15,13 +15,14 @@ connectDB();
 const meals = require("./routes/meals");
 const products = require("./routes/products");
 const authRoutes = require("./routes/auth");
+//const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const app = express();
 
 // Body parser
 app.use(express.json());
 app.use(cors());
-// Serve static files from the "public" directory
-//app.use(express.static('public'));
+// app.use(notFound)
+// app.use(errorHandler)
 
 // mount routers
 app.use("/api/v1/meals", meals);
