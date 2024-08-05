@@ -6,7 +6,6 @@ const Food = require("../models/Food");
 // @access  Public
 exports.getFoods = asyncHandler(async (req, res, next) => {
   const products = await Food.find({});
-  console.log(products);
   res.json(products);
   // try {
   //   const meals = await Food.find();
@@ -22,7 +21,8 @@ exports.getFoodById = asyncHandler(async (req, res, next) => {
     if (!food) {
       return res.status(400).json({ success: false });
     }
-    res.status(200).json({ success: true, data: food });
+    //res.status(200).json({ success: true, data: food });
+    res.json(food);
   } catch (error) {
     res.status(400).json({ success: false });
   }

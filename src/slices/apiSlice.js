@@ -9,7 +9,7 @@ import { BASE_URL } from "../constants";
 // https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#customizing-queries-with-basequery
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5002",
+  baseUrl: BASE_URL,
 });
 
 // async function baseQueryWithAuth(args, api, extra) {
@@ -22,9 +22,9 @@ const baseQuery = fetchBaseQuery({
 // }
 
 export const apiSlice = createApi({
-  //reducerPath: "api",
+  reducerPath: "api",
   baseQuery, // Use the customized baseQuery
-  tagTypes:['Product','Order','User'],
+  //tagTypes:['Product','Order','User'],
   endpoints: (builder) => ({
     //getMeals: builder.query({
      // query: () => "/products",
@@ -33,4 +33,4 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useGetMealsQuery } = apiSlice;
+//export const { useGetMealsQuery } = apiSlice;

@@ -5,22 +5,29 @@ import axios from "axios";
 import { Button, Col, Container, Image, ListGroup, Row } from "react-bootstrap";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 
-const Product = () => {
-  const [product, setProduct] = useState({});
+const ProductDetail = () => {
+  //const [product, setProduct] = useState({});
   const { id: productId } = useParams();
-  console.log(productId);
-  //const { data: product, isLoading, error } = useGetProductDetailsQuery(productId);
-  // const product = products.find((p) => p._id === id);
-  useEffect(() => {
-    const fetchMeal = async () => {
-      const response = await axios.get(
-        `http://localhost:5002/api/v1/products/${productId}`
-      );
-      setProduct(response.data.data);
-    };
-    fetchMeal();
-  }, []);
-  //console.log(product);
+  //const productId =String(id)
+  const {
+    data: product = {},
+    isLoading,
+    error,
+  } = useGetProductDetailsQuery(productId);
+
+  console.log(product);
+  //const product= data.find
+  // const product = data.find((p) => String(p._id) === id);
+  //   useEffect(() => {
+  //     const fetchMeal = async () => {
+  //       const response = await axios.get(
+  //         `http://localhost:5002/api/v1/products/${productId}`
+  //       );
+  //       setProduct(response.data.data);
+  //     };
+  //     fetchMeal();
+  //   }, []);
+
   return (
     <>
       <Container>
@@ -79,4 +86,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductDetail;
