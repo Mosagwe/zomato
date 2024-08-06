@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+//import axios from "axios";
 //import products from "../foods";
 import { Button, Col, Container, Image, ListGroup, Row } from "react-bootstrap";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
@@ -8,15 +8,13 @@ import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 const ProductDetail = () => {
   //const [product, setProduct] = useState({});
   const { id: productId } = useParams();
-  //const productId =String(id)
+
   const {
     data: product = {},
     isLoading,
     error,
   } = useGetProductDetailsQuery(productId);
 
-  console.log(product);
-  //const product= data.find
   // const product = data.find((p) => String(p._id) === id);
   //   useEffect(() => {
   //     const fetchMeal = async () => {
