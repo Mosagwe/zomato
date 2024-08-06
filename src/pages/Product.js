@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Col, Container, Image, ListGroup, Row } from "react-bootstrap";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 const ProductDetail = () => {
   //const [product, setProduct] = useState({});
@@ -33,10 +34,13 @@ const ProductDetail = () => {
         <Link className="btn btn-light my-3" to="/">
           Go Back
         </Link>
+
         {isLoading ? (
           <Loader />
         ) : error ? (
-          <div>{error?.data?.message || error.error}</div>
+          <Message variant="danger">
+            {error?.data?.message || error.error}
+          </Message>
         ) : (
           <Row>
             <Col md={5}>

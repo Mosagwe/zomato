@@ -5,6 +5,7 @@ import { Col, Row } from "react-bootstrap";
 import FoodItem from "./FoodItem.jsx";
 import { useGetProductsQuery } from "../slices/productsApiSlice.js";
 import Loader from "./Loader.jsx";
+import Message from "./Message.jsx";
 
 const FoodList = () => {
   //const [foods,setFoods]=useState([])
@@ -22,7 +23,7 @@ const FoodList = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <div>{error?.data?.message || error.error}</div>
+        <Message variant='danger'>{error?.data?.message || error.error}</Message>
       ) : (
         <>
           <h1>Available Meals</h1>
