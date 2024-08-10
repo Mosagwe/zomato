@@ -13,6 +13,7 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 // Route files
 const meals = require("./routes/meals");
+const categories = require("./routes/categories");
 const products = require("./routes/products");
 const authRoutes = require("./routes/auth");
 //const { notFound, errorHandler } = require("./middleware/errorMiddleware");
@@ -26,6 +27,7 @@ app.use(cors());
 
 // mount routers
 app.use("/api/v1/meals", meals);
+app.use("/api/v1/categories", categories);
 app.use("/api/v1/products", products);
 app.use("/api/v1/auth", authRoutes);
 

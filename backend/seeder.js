@@ -1,6 +1,8 @@
 const users = require("./data/users.js");
 const foods = require("./data/foods.js");
+const categories = require("./data/categories.js");
 const User = require("./models/User.js");
+const Category = require("./models/Category.js");
 const Food = require("./models/Food.js");
 const Order = require("./models/Order.js");
 const connectDB = require("./config/db");
@@ -17,11 +19,18 @@ const importData = async () => {
   try {
     await Order.deleteMany();
     await Food.deleteMany();
+    await Category.deleteMany();
     await User.deleteMany();
 
     const createdUsers = await User.insertMany(users);
 
     const adminUser = createdUsers[0]._id;
+
+    const sampleCategories = categories.map((category) => {
+      return { ...category, user: adminUser };
+    });
+
+    await Category.insertMany(sampleCategories);
 
     const sampleFoods = foods.map((food) => {
       return { ...food, user: adminUser };
@@ -41,6 +50,7 @@ const destroyData = async () => {
   try {
     await Order.deleteMany();
     await Food.deleteMany();
+    await Category.deleteMany();
     await User.deleteMany();
 
     console.log("Data Destroyed!");
