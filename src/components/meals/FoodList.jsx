@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 //import axios from "axios"
 import { Col, Row } from "react-bootstrap";
 import FoodItem from "./FoodItem.jsx";
-import { useGetProductsQuery } from "../slices/productsApiSlice.js";
-import Loader from "./Loader.jsx";
-import Message from "./Message.jsx";
+import { useGetProductsQuery } from "../../slices/productsApiSlice.js";
+import Loader from "../Loader.jsx";
+import Message from "../Message.jsx";
 
 const FoodList = () => {
   //const [foods,setFoods]=useState([])

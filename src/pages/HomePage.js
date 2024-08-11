@@ -4,9 +4,8 @@ import Header from "../components/Header";
 
 import QuickSearch from "../components/QuickSearch";
 
-
-import FoodList from "../components/FoodList";
 import { Container } from "react-bootstrap";
+import CategoriesList from "../components/categories/CategoriesList";
 
 const HomePage = () => {
   return (
@@ -25,7 +24,8 @@ const HomePage = () => {
               .
             </p>
           </div>
-        <FoodList/>
+          {/* <FoodList/> */}
+          <CategoriesList />
         </Container>
       </main>
     </div>

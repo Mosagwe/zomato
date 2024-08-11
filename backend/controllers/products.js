@@ -5,7 +5,18 @@ const Food = require("../models/Food");
 // @route   GET /api/v1/meals
 // @access  Public
 exports.getFoods = asyncHandler(async (req, res, next) => {
-  const products = await Food.find({});
+  const { category } = req.query;
+
+  let products;
+  if (category) {
+    products = await Food.find({ category });
+  } else {
+    products = await Food.find({});
+  }
+  if (!products.length) {
+    return res.status(404).json({ message: "No foods found" });
+  }
+
   res.json(products);
   // try {
   //   const meals = await Food.find();
