@@ -55,14 +55,7 @@ const MainNavigation = () => {
             </ul>
             <div className="d-flex ms-auto">
               <button onClick={handleShow} className="btn btn-danger mx-2">
-                Login
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary mx-2"
-                onClick={handleShowSignup}
-              >
-                Sign Up
+                Sign In
               </button>
             </div>
           </div>

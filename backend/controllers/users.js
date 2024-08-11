@@ -16,8 +16,8 @@ exports.createUser = async (req, res, next) => {
   // }
 
   try {
-    let { email, password } = req.body;
-    //const user = await User.create(req.body);
+    let { name, email, password } = req.body;
+
     const isUserExist = await User.findOne({ email: email });
 
     if (isUserExist) {
@@ -25,7 +25,7 @@ exports.createUser = async (req, res, next) => {
     }
     password = await bcrypt.hash(password, 8);
 
-    const user = await User.create({ email: email, password: password });
+    const user = await User.create({ name, email: email, password: password });
 
     res.status(201).json({
       success: true,
@@ -40,17 +40,21 @@ exports.createUser = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  User.findOne({ email: email }).then((user) => {
+    const user = await User.findOne({ email: email });
     if (user) {
-      if (user.password === password) {
+      const match = await bcrypt.compare(password, user.password);
+      if (match) {
         res.json("Successful login");
       } else {
-        res.json("The password is incorrect");
+        res.json("Invalid credentials");
       }
     } else {
-      res.json("No record existed");
+      res.json("No record exist");
     }
-  });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error logging in!" });
+  }
 };
