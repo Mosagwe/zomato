@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import { useCart } from "../../hooks/useCart";
 
 const FoodItem = ({ food }) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(food);
+  };
+
+  
+
   return (
     <Card className="my-3 p-3 rounded">
       <a href={`/products/${food._id}`}>
@@ -18,6 +27,13 @@ const FoodItem = ({ food }) => {
           </Card.Title>
         </a>
         <Card.Text as="h3">${food.price}</Card.Text>
+        <button
+          onClick={handleAddToCart}
+          className="btn btn-danger btn-block"
+          style={{ borderRadius: "10rem", outline: "none" }}
+        >
+          Add to Cart
+        </button>
       </Card.Body>
     </Card>
   );

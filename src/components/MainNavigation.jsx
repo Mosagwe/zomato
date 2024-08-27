@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useCart } from "../hooks/useCart";
 
 const MainNavigation = () => {
   const [showModal, setShowModal] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+  const { cart } = useCart();
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -57,6 +59,9 @@ const MainNavigation = () => {
               <button onClick={handleShow} className="btn btn-danger mx-2">
                 Sign In
               </button>
+              <Link to="/cart" className="btn btn-danger mx-2">
+                Cart( {cart && cart.totalCount})
+              </Link>
             </div>
           </div>
         </div>
