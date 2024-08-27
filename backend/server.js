@@ -16,12 +16,14 @@ const meals = require("./routes/meals");
 const categories = require("./routes/categories");
 const products = require("./routes/products");
 const authRoutes = require("./routes/auth");
+const cookieParser = require("cookie-parser");
 //const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const app = express();
 
 // Body parser
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser()); // For parsing cookies
 // app.use(notFound)
 // app.use(errorHandler)
 
